@@ -13,6 +13,7 @@ npm run serve
 <hr />
 
 ## Notes
+Question and Result should be in separate components. 
 
 ### Process
 1. Loop through all questions and render them. 
@@ -28,7 +29,3 @@ npm run serve
 6. Update number of questions answered. 
 ->
 7. Update current active question to the next question. 
-
-
-
-Question and Result should be in separate components. 

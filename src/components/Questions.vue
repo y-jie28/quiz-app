@@ -5,18 +5,35 @@
       <div class="status">1 out of 3 questions answered</div>
     </div>
 
-    <div class="single-question">
-      <div class="question">Sample Question 1</div>
+    <div
+      class="single-question"
+      v-for="(question, qi) in questions"
+      :key="question.q"
+      v-show="questionsAnswered === qi"
+    >
+      <div class="question">{{ question.q }}</div>
       <div class="answers">
-        <div class="answer">Sample Answer 1</div>
-        <div class="answer">Sample Answer 2</div>
-        <div class="answer">Sample Answer 3</div>
-        <div class="answer">Sample Answer 4</div>
+        <div
+          class="answer"
+          v-for="answer in question.answers"
+          :key="answer.text"
+          @click.prevent="selectAnswer(answer.is_correct)"
+        >
+          {{ answer.text }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["questions", "questionsAnswered"],
+  emits: ["question-answered"],
+  methods: {
+    selectAnswer(is_correct) {
+      this.$emit("question-answered", is_correct);
+    },
+  },
+};
 </script>
